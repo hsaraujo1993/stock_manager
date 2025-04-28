@@ -1,0 +1,303 @@
+/* Estilo geral do corpo */
+body {
+    background-color: #fff0f5; /* Lavanda clarinho */
+    color: #4a4a4a; /* Cinza escuro para texto - mais suave que preto puro */
+}
+
+/* Menu lateral (Sidebar) */
+.sidebar {
+    background-color: #ffb6c1; /* Rosa claro */
+}
+
+/* Links do menu lateral */
+.sidebar a {
+    color: #9c4668 !important; /* Bordô/rosa escuro - combina melhor com rosa */
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* Hover dos links no menu lateral */
+.sidebar a:hover {
+    background-color: #f8c8dc; /* Rosa clarinho no hover */
+    color: #782a48 !important; /* Bordô mais escuro no hover */
+}
+
+/* Quando um item do menu lateral é clicado (ativo) */
+.sidebar a:focus, .sidebar a.active {
+    background-color: #e83e8c; /* Rosa médio/escuro quando ativo */
+    color: #ffffff !important; /* Cor branca nas letras quando o item estiver ativo */
+}
+
+/* Títulos no menu lateral */
+.sidebar .nav-header {
+    color: #9c4668 !important; /* Bordô/rosa escuro para os títulos */
+}
+
+/* Ícones */
+.sidebar .nav-icon {
+    color: #9c4668 !important; /* Ícones em bordô/rosa escuro */
+}
+
+/* Navbar superior */
+.navbar {
+    background-color: #ffb6c1; /* Rosa bebê */
+}
+
+/* Título do painel (Administração de Estoque e Vendas) */
+.navbar .navbar-brand {
+    color: #9c4668; /* Bordô/rosa escuro - mais harmonioso */
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+/* Nome dos atributos (campos do banco) */
+div.field, .form-group, .control-label {
+    background-color: #ffd6e0; /* Rosa mais claro que o topbar */
+    color: #9c4668 !important; /* Bordô/rosa escuro */
+    font-weight: 600; /* Destacar os nomes dos atributos */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Botões personalizados rosa */
+.btn-pink {
+    color: #fff;
+    background-color: #e83e8c;
+    border-color: #e83e8c;
+}
+
+.btn-pink:hover {
+    color: #fff;
+    background-color: #d33076;
+    border-color: #c21f66;
+}
+
+.btn-pink:focus, .btn-pink.focus {
+    box-shadow: 0 0 0 0.2rem rgba(232, 62, 140, 0.5);
+}
+
+/* Botões */
+button, .btn {
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 8px 15px;
+}
+
+/* Cards, tabelas, caixas */
+.card, .form-control {
+    border-color: #ffc0cb; /* Bordas rosinha */
+    background-color: #ffffff;
+    color: #4a4a4a; /* Cinza escuro em cards e tabelas */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Títulos dos formulários */
+h1, h2, h3, h4, h5, h6 {
+    color: #9c4668; /* Títulos em bordô/rosa escuro */
+    margin-bottom: 15px;
+}
+
+/* Texto geral nos formulários */
+label, .form-group label, .control-label {
+    color: #9c4668 !important; /* Bordô/rosa escuro para os labels */
+}
+
+/* Login page */
+.login-page {
+    background: linear-gradient(to right, #ffe4e1, #fff0f5); /* Gradiente rosa claro */
+}
+
+/* Melhorias nas tabelas */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Cabeçalho da tabela */
+.table thead th {
+    background-color: #ffd6e0;
+    color: #9c4668;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 2px solid #ffc0cb;
+    letter-spacing: 0.5px;
+}
+
+/* Células da tabela */
+.table tbody td {
+    padding: 10px 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #ffc0cb;
+}
+
+/* Linhas alternadas para melhor legibilidade */
+.table tbody tr:nth-child(even) {
+    background-color: #fff5f8;
+}
+
+/* Hover nas linhas */
+.table tbody tr:hover {
+    background-color: #fff0f5;
+}
+
+/* Última linha sem borda inferior */
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilo de paginação */
+.pagination {
+    margin-top: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.page-link {
+    color: #9c4668 !important;
+    border-color: #ffc0cb;
+    padding: 8px 16px;
+}
+
+.page-item.active .page-link {
+    background-color: #e83e8c !important;
+    border-color: #e83e8c;
+    color: #fff !important;
+}
+
+/* Campo de pesquisa */
+input[type="search"] {
+    border-radius: 20px !important;
+    border-color: #ffc0cb !important;
+    padding-left: 15px !important;
+}
+
+/* Select2 customização */
+.select2-container--default .select2-selection--single {
+    border-color: #ffc0cb !important;
+    border-radius: 5px !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #e83e8c !important;
+    color: white;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    background-color: #fff5f8;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-item.active {
+    color: #9c4668;
+}
+
+/* Filtros */
+.card-header.with-border {
+    background-color: #ffd6e0;
+    color: #9c4668;
+    font-weight: 600;
+    border-radius: 6px 6px 0 0;
+    padding: 12px 15px;
+}
+
+/* Botões de ações */
+.actions-btn {
+    margin-right: 5px;
+}
+
+/* Inputs e selects */
+input.form-control, select.form-control {
+    border-color: #ffc0cb;
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+input.form-control:focus, select.form-control:focus {
+    border-color: #e83e8c;
+    box-shadow: 0 0 0 0.2rem rgba(232, 62, 140, 0.25);
+}
+
+/* Ajustes adicionais para formulários */
+fieldset {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+legend {
+    color: #9c4668;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+/* Estilo para o botão de remoção (geralmente com a classe .action-delete) */
+.action-delete {
+    color: #ffffff !important;  /* Texto branco para garantir boa visibilidade */
+    background-color: #ff4d4d !important;  /* Cor vermelha para indicar ação de remoção */
+    border-color: #ff4d4d !important;  /* Borda vermelha */
+    font-weight: bold;  /* Destacar o texto */
+}
+
+/* Hover para o botão de remoção */
+.action-delete:hover {
+    background-color: #e60000 !important;  /* Vermelho mais escuro no hover */
+    border-color: #e60000 !important;  /* Borda mais escura no hover */
+}
+
+/* Focus para o botão de remoção */
+.action-delete:focus, .action-delete:active {
+    box-shadow: 0 0 0 0.2rem rgba(232, 62, 140, 0.5);
+}
+
+/* Adicionando um ajuste para o texto sempre ficar visível */
+.action-delete, .action-delete:hover, .action-delete:focus, .action-delete:active {
+    color: #ffffff !important;  /* Garantir que o texto seja branco em todos os estados */
+}
+
+.total-price-summary {
+    background-color: #ffd6e0; /* Rosa clarinho igual ao usado nos cards/tabelas */
+    color: #9c4668; /* Texto em bordô/rosa escuro */
+    font-weight: 600;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-size: 18px;
+}
+
+.alert.alert-info {
+    background-color: #ffd6e0 !important; /* Rosa clarinho */
+    color: #9c4668 !important; /* Texto bordô */
+    font-weight: 600;
+    text-align: center;
+    border: none;
+}
+div.alert.alert-info {
+    background-color: #ffd6e0 !important; /* Rosa clarinho */
+    color: #9c4668 !important; /* Texto bordô */
+    font-weight: 600;
+    text-align: center;
+    border: none !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+
