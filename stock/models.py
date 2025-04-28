@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False, verbose_name='Nome da Categoria')
     prefix = models.CharField(max_length=10, null=False, blank=False, verbose_name='Prefixo do Código')
@@ -13,6 +14,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Produto(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False, verbose_name='Nome do Produto')
     material_code = models.CharField(max_length=255, null=True, blank=True, verbose_name='Código do Produto')
@@ -24,11 +26,12 @@ class Produto(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.material_code:
-            self.material_code = f"{self.category.prefix}-{str(uuid.uuid4())[:5]}"
+            self.material_code = f"{self.category.prefix}-{str(uuid.uuid4())[:5].upper()}"
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.material_code} - {self.name}"
+
 
 class Stock(models.Model):
     product = models.OneToOneField(Produto, on_delete=models.CASCADE, related_name='stock', verbose_name='Produto')
@@ -40,6 +43,7 @@ class Stock(models.Model):
 
     def __str__(self):
         return f"{self.product.name} - {self.quantity} unidades"
+
 
 class Price(models.Model):
     product = models.OneToOneField(Produto, on_delete=models.CASCADE, related_name='price', verbose_name='Produto')
@@ -54,6 +58,7 @@ class Price(models.Model):
 
     def __str__(self):
         return f"{self.product.name} - R${self.sale_value:.2f}"
+
 
 class Sale(models.Model):
     date = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
@@ -77,6 +82,7 @@ class Sale(models.Model):
             return "Venda não foi registrada."
         return f"Venda #{self.id} - {self.date.strftime('%d/%m/%Y %H:%M')}"
 
+
 class SalesItem(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='items', verbose_name='Venda')
     product = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='items', verbose_name='Produto')
@@ -91,4 +97,3 @@ class SalesItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
-

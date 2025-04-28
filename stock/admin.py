@@ -3,6 +3,23 @@ from django.contrib import admin, messages
 from django.db.models import Sum
 from .admin_actions import export_as_excel
 from .models import Category, Produto, Stock, Price, Sale, SalesItem
+from django import forms
+
+
+# Formulário customizado para SalesItem, filtrando produtos ativos com preço e estoque
+class SalesItemForm(forms.ModelForm):
+    class Meta:
+        model = SalesItem
+        fields = ['product', 'quantity']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Filtra produtos com status ativo, com preço e com estoque
+        self.fields['product'].queryset = Produto.objects.filter(
+            status=True,  # Produtos ativos
+            price__isnull=False,  # Produtos com preço
+            stock__quantity__gt=0  # Produtos com estoque
+        )
 
 
 # Admin de Categoria
@@ -20,6 +37,7 @@ class ProdutoAdmin(admin.ModelAdmin):
     search_fields = ('name', 'material_code')
     list_filter = ('category', 'status', 'created_at')  # Filtro por categoria, status e data de criação
     ordering = ('name',)
+    exclude = ('material_code',)
 
 
 # Admin de Estoque
@@ -52,9 +70,6 @@ class PriceAdmin(admin.ModelAdmin):
     formatted_sale_value.short_description = 'Preço de Revenda'
     formatted_purchase_value.short_description = 'Preço de Compra'
 
-    # >>>>>> AQUI você adiciona o changelist_view:
-
-
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(request, extra_context=extra_context)
 
@@ -78,8 +93,7 @@ class SalesItemInline(admin.TabularInline):
     extra = 0  # Melhor deixar 0 para não ficar aparecendo linha vazia
     fields = ('product', 'quantity', 'subtotal')
     readonly_fields = ('subtotal',)
-    can_delete = True  # Deixa deletar depois de salvar também
-    show_change_link = True  # Opcional: vira link para editar o item se quiser
+    form = SalesItemForm  # Usando o formulário customizado
 
     def subtotal(self, obj):
         if not obj.id:  # Se o objeto ainda não existe
@@ -87,6 +101,15 @@ class SalesItemInline(admin.TabularInline):
         return f"R${obj.product.price.sale_value * obj.quantity:.2f}"
 
     subtotal.short_description = 'Subtotal'
+
+    def get_queryset(self, request):
+        # Filtra apenas produtos com status ativo, preço e estoque
+        queryset = super().get_queryset(request)
+        return queryset.filter(
+            product__status=True,  # Só exibe produtos ativos
+            product__price__isnull=False,  # Com preço
+            product__stock__quantity__gt=0  # Com estoque disponível
+        )
 
 
 # Admin da Venda
