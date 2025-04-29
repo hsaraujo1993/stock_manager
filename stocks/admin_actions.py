@@ -2,6 +2,7 @@ import openpyxl
 from django.http import HttpResponse
 from django.utils.timezone import localtime
 
+
 def export_as_excel(modeladmin, request, queryset):
     # Pega todos os registros da tabela
     queryset = modeladmin.model.objects.all()
@@ -38,5 +39,6 @@ def export_as_excel(modeladmin, request, queryset):
     response['Content-Disposition'] = f'attachment; filename={modeladmin.model._meta.model_name}s.xlsx'
     wb.save(response)
     return response
+
 
 export_as_excel.short_description = "Exportar todos para Excel"
