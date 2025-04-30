@@ -16,12 +16,24 @@ class SaleAdmin(admin.ModelAdmin):
     total_value_display.short_description = 'Valor Total'
 
     def changelist_view(self, request, extra_context=None):
-        total_sales_value = Sale.objects.aggregate(total=Sum('total_value'))['total'] or 0
-        messages.info(
-            request,
-            f"Valor total de todas as vendas: R${total_sales_value:.2f}"
-        )
-        return super().changelist_view(request, extra_context=extra_context)
+        response = super().changelist_view(request, extra_context)
+
+        try:
+            # Cria o objeto ChangeList com os filtros da interface
+            cl = self.get_changelist_instance(request)
+            queryset = cl.get_queryset(request)
+
+            total_sales_value = queryset.aggregate(total=Sum('total_value'))['total'] or 0
+
+            messages.info(
+                request,
+                f"Valor total das vendas filtradas: R${total_sales_value:.2f}"
+            )
+        except Exception as e:
+            # Apenas para evitar quebra, se der erro (como em exportações)
+            messages.warning(request, f"Erro ao calcular o total filtrado: {str(e)}")
+
+        return response
 
     def get_form(self, request, obj=None, **kwargs):
         self.current_request = request
