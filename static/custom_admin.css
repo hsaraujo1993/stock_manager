@@ -300,4 +300,13 @@ div.alert.alert-info {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+div.messagelist ul.messagelist li.success,
+.alert.alert-success {
+    background-color: #ffd6e0 !important;
+    color: #e83e8c !important;
+    border-color: #ffd6e0 !important;
+    font-weight: bold !important;
+}
+
+
 
