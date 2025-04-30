@@ -1,12 +1,8 @@
 from django.contrib import admin, messages
+from django.db.models import Sum
 from sales.models import Sale
 from sales_items.admin import SalesItemInline
 
-
-# Register your models here.
-
-
-# Admin da Venda
 @admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):
     inlines = [SalesItemInline]
@@ -14,6 +10,18 @@ class SaleAdmin(admin.ModelAdmin):
     search_fields = ('date', 'total_value', 'id')
     list_filter = ('date',)
     list_display = ('id', 'date', 'total_value_display',)
+
+    def total_value_display(self, obj):
+        return f"R${obj.total_value:.2f}"
+    total_value_display.short_description = 'Valor Total'
+
+    def changelist_view(self, request, extra_context=None):
+        total_sales_value = Sale.objects.aggregate(total=Sum('total_value'))['total'] or 0
+        messages.info(
+            request,
+            f"Valor total de todas as vendas: R${total_sales_value:.2f}"
+        )
+        return super().changelist_view(request, extra_context=extra_context)
 
     def get_form(self, request, obj=None, **kwargs):
         self.current_request = request
@@ -35,7 +43,7 @@ class SaleAdmin(admin.ModelAdmin):
 
         has_error = False
         for instance in instances:
-            if not instance.id:  # Somente para novos itens
+            if not instance.id:
                 stock = instance.product.stock
                 if stock.quantity < instance.quantity:
                     messages.error(
@@ -62,8 +70,3 @@ class SaleAdmin(admin.ModelAdmin):
         sale = form.instance
         sale.total_value = sum(item.subtotal() for item in sale.items.all())
         sale.save(update_fields=['total_value'])
-
-    def total_value_display(self, obj):
-        return f"R${obj.total_value:.2f}"
-
-    total_value_display.short_description = 'Valor Total'
