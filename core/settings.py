@@ -202,8 +202,8 @@ JAZZMIN_SETTINGS = {
     "use_select2": True,  # Ativa select2 para campos de seleção melhorados
     "use_select2_for_related": True,  # Ativa select2 para campos relacionados
 
-    # Campos de pesquisa
-    "search_model": ["auth.User", "productos.produto", "vendas.venda"],
+    # # Campos de pesquisa
+    # "search_model": ["auth.User", "productos.produto", "vendas.venda"],
 
     # CSS personalizado
     "custom_css": "custom_admin.css",

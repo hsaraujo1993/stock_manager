@@ -308,5 +308,11 @@ div.messagelist ul.messagelist li.success,
     font-weight: bold !important;
 }
 
+.brand-link {
+    background-color: #ffb6c1 !important;
+    color: #9c4668 !important;
+    font-weight: 900; /* Negrito ainda mais forte */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para destacar mais */
+}
 
 
