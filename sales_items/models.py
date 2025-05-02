@@ -6,7 +6,6 @@ from sales.models import Sale
 
 # Create your models here.
 
-
 class SalesItem(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='items', verbose_name='Venda')
     product = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='items', verbose_name='Produto')

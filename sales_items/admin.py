@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django import forms
 
+from core.admin_actions import export_as_excel
 from products.models import Produto
 from sales_items.models import SalesItem
 
@@ -52,6 +53,7 @@ class SalesItemInline(admin.TabularInline):
 class SalesItemAdmin(admin.ModelAdmin):
     list_display = ('sale_id_display', 'product', 'quantity', 'subtotal_display')
     list_filter = ('product__category', 'sale_id')  # Filtro por categoria do produto
+    actions = [export_as_excel]
 
     def subtotal_display(self, obj):
         return f"R${obj.subtotal():.2f}"

@@ -26,6 +26,10 @@ class Sale(models.Model):
             return "Venda não foi registrada."
         return f"Venda #{self.id} - {self.date.strftime('%d/%m/%Y %H:%M')}"
 
+    @property
+    def total(self):
+        return sum(item.subtotal() for item in self.items.all())
+
 
 class SalesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

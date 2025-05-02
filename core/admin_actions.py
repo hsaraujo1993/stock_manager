@@ -4,10 +4,9 @@ from django.utils.timezone import localtime
 
 
 def export_as_excel(modeladmin, request, queryset):
-    # Pega todos os registros da tabela
+
     queryset = modeladmin.model.objects.all()
 
-    # Verifica se há registros para exportar
     if not queryset.exists():
         modeladmin.message_user(request, "Não há registros para exportar.", level='warning')
         return HttpResponse("Não há registros para exportar.")

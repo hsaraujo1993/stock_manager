@@ -1,6 +1,7 @@
 from django.contrib import admin, messages
 from django.db.models import Sum
 
+from core.admin_actions import export_as_excel
 from prices.models import Price
 
 
@@ -9,10 +10,11 @@ from prices.models import Price
 # Admin de Preço
 @admin.register(Price)
 class PriceAdmin(admin.ModelAdmin):
-    list_display = ('product', 'formatted_sale_value', 'formatted_purchase_value')
+    list_display = ('product', 'formatted_sale_value', 'formatted_purchase_value', 'created_at')
     search_fields = ('product__name',)
     list_filter = ('product__category',)
     ordering = ('product__name',)
+    actions = [export_as_excel]
 
     def formatted_sale_value(self, obj):
         return f"R${obj.sale_value:.2f}"

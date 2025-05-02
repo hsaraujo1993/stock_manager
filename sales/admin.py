@@ -1,5 +1,7 @@
 from django.contrib import admin, messages
 from django.db.models import Sum
+
+from core.admin_actions import export_as_excel
 from sales.models import Sale
 from sales_items.admin import SalesItemInline
 
@@ -10,6 +12,7 @@ class SaleAdmin(admin.ModelAdmin):
     search_fields = ('date', 'total_value', 'id')
     list_filter = ('date',)
     list_display = ('id_display', 'date', 'total_value_display',)
+    actions = [export_as_excel]
 
     def total_value_display(self, obj):
         return f"R${obj.total_value:.2f}"

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 
-from stocks.admin_actions import export_as_excel
+from core.admin_actions import export_as_excel
 from stocks.models import Stock
 
 
