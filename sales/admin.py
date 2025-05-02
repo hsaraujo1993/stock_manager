@@ -9,7 +9,7 @@ class SaleAdmin(admin.ModelAdmin):
     readonly_fields = ('date', 'total_value')
     search_fields = ('date', 'total_value', 'id')
     list_filter = ('date',)
-    list_display = ('id', 'date', 'total_value_display',)
+    list_display = ('id_display', 'date', 'total_value_display',)
 
     def total_value_display(self, obj):
         return f"R${obj.total_value:.2f}"
@@ -82,3 +82,8 @@ class SaleAdmin(admin.ModelAdmin):
         sale = form.instance
         sale.total_value = sum(item.subtotal() for item in sale.items.all())
         sale.save(update_fields=['total_value'])
+
+    def id_display(self, obj):
+        return f"Venda #{obj.id}"
+
+    id_display.short_description = 'Venda'

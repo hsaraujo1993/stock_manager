@@ -138,7 +138,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Estoque & Vendas",  # Marca do site
     "welcome_sign": "Bem-vindo(a) ao Painel de Controle 💖",
     "login_message": "",  # Mensagem que aparece na tela de login
-    "copyright": "© 2025 Henrique LTDA",
+    "copyright": "© TH Sistemas LTDA",
 
     # Estética geral
     "show_sidebar": True,
@@ -146,33 +146,33 @@ JAZZMIN_SETTINGS = {
     "hide_apps": [],
     "hide_models": [],
 
+    "navigation_expanded": True,
+    "show_sidebar": True,
+    "side_menu": {
+        "show_apps": False,  # <- ESTA LINHA É ESSENCIAL
+    },
+
     # Tema que combina melhor com rosa
     "theme": "pulse",
 
     # Configurações avançadas de navegação
-    "order_with_respect_to": ["vendas", "produtos", "estoques", "auth"],
-
-
+    "order_with_respect_to": ["Categories", "Products", "Prices", "Stocks"],
 
     # Ícones para o menu
     "icons": {
-        "auth": "fas fa-user-lock",
-        "auth.user": "fas fa-user",
-        "auth.Group": "fas fa-users",
+    "auth": "fas fa-user-lock",
+    "auth.User": "fas fa-user",
+    "auth.Group": "fas fa-users",
 
-        "products": "fas fa-cube",
-        "products.Product": "fas fa-box",
-        "products.Category": "fas fa-cogs",
-        "sales": "fas fa-cash-register",
-        "sales.sale": "fas fa-cart-arrow-down",
-        "sales.itemvenda": "fas fa-receipt",
-        "Customers": "fas fa-users",
-        "customers.Customer": "fas fa-user-friends",
-        "stocks": "fas fa-warehouse",
-        "stocks.Stock": "fas fa-boxes",
-        "prices": "fas fa-tag",
-        "prices.Price": "fas fa-dollar-sign"
-},
+
+    "products.Produto": "fas fa-cube",
+    "categories.Category": "fa-solid fa-list",
+    "sales.Sale": "fas fa-cash-register",
+    "sales_items.SalesItem": "fa-solid fa-arrow-trend-down",
+    "stocks.Stock": "fas fa-boxes",
+    "prices.Price": "fas fa-dollar-sign",
+    },
+
     "default_icon_parents": "fas fa-folder-open",
     "default_icon_children": "fas fa-leaf",
 

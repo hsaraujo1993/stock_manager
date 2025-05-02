@@ -13,8 +13,8 @@ class SalesItem(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='Quantidade')
 
     class Meta:
-        verbose_name = 'Item Vendido'
-        verbose_name_plural = 'Itens Vendidos'
+        verbose_name = 'Saida Estoque'
+        verbose_name_plural = 'Saidas Estoque'
 
     def subtotal(self):
         return self.product.price.sale_value * self.quantity

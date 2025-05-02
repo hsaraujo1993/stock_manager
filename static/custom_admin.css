@@ -315,4 +315,10 @@ div.messagelist ul.messagelist li.success,
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para destacar mais */
 }
 
+.nav-sidebar .nav-header,
+.sidebar-menu .nav-header,
+.nav-sidebar > li.nav-header {
+    display: none !important;
+}
+
 

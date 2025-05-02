@@ -11,6 +11,6 @@ from products.models import Produto
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'material_code', 'status', 'created_at', 'updated_at')
     search_fields = ('name', 'material_code')
-    list_filter = ('category', 'status', 'created_at')  # Filtro por categoria, status e data de criação
+    list_filter = ('category__name', 'status', 'created_at')  # Filtro por categoria, status e data de criação
     ordering = ('name',)
     exclude = ('material_code',)

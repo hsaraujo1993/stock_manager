@@ -50,11 +50,15 @@ class SalesItemInline(admin.TabularInline):
 
 @admin.register(SalesItem)
 class SalesItemAdmin(admin.ModelAdmin):
-    list_display = ('product', 'quantity', 'subtotal_display')
-    search_fields = ('product__name',)  # Filtro por nome do produto
-    list_filter = ('product__category',)  # Filtro por categoria do produto
+    list_display = ('sale_id_display', 'product', 'quantity', 'subtotal_display')
+    list_filter = ('product__category', 'sale_id')  # Filtro por categoria do produto
 
     def subtotal_display(self, obj):
         return f"R${obj.subtotal():.2f}"
 
     subtotal_display.short_description = 'Subtotal'
+
+    def sale_id_display(self, obj):
+        return f"Venda #{obj.sale.id}"
+
+    sale_id_display.short_description = 'Venda'
