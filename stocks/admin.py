@@ -31,8 +31,8 @@ class LowStockFilter(SimpleListFilter):
 @admin.register(Stock)
 class StockAdmin(admin.ModelAdmin):
     list_display = ('product', 'quantity', 'product__category','low_stock_alert')
-    search_fields = ('product__name',)
-    list_filter = (LowStockFilter,)
+    search_fields = ('product__name', 'product__material_code')
+    list_filter = (LowStockFilter, 'product__category')
     ordering = ('product__name',)
     actions = [export_as_excel]
 
@@ -41,6 +41,11 @@ class StockAdmin(admin.ModelAdmin):
             return "⚠️ Estoque Baixo!"
         return "OK"
 
-    low_stock_alert.short_description = 'Stock Status'
+    low_stock_alert.short_description = 'Status Estoque'
+
+    def product__category(self, obj):
+        return obj.product.category
+
+    product__category.short_description = 'Categoria'
 
 

@@ -8,6 +8,11 @@ class Category(models.Model):
     prefix = models.CharField(max_length=10, null=False, blank=False, verbose_name='Prefixo do Código')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.title()
+        self.prefix = self.prefix.upper()
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'

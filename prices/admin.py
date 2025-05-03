@@ -11,7 +11,7 @@ from prices.models import Price
 @admin.register(Price)
 class PriceAdmin(admin.ModelAdmin):
     list_display = ('product', 'formatted_sale_value', 'formatted_purchase_value', 'created_at')
-    search_fields = ('product__name',)
+    search_fields = ('product__name', 'product__material_code')
     list_filter = ('product__category',)
     ordering = ('product__name',)
     actions = [export_as_excel]

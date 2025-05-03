@@ -22,7 +22,6 @@ class SaleAdmin(admin.ModelAdmin):
         response = super().changelist_view(request, extra_context)
 
         try:
-            # Cria o objeto ChangeList com os filtros da interface
             cl = self.get_changelist_instance(request)
             queryset = cl.get_queryset(request)
 
@@ -33,7 +32,6 @@ class SaleAdmin(admin.ModelAdmin):
                 f"Valor total das vendas filtradas: R${total_sales_value:.2f}"
             )
         except Exception as e:
-            # Apenas para evitar quebra, se der erro (como em exportações)
             messages.warning(request, f"Erro ao calcular o total filtrado: {str(e)}")
 
         return response
@@ -87,6 +85,6 @@ class SaleAdmin(admin.ModelAdmin):
         sale.save(update_fields=['total_value'])
 
     def id_display(self, obj):
-        return f"Venda #{obj.id}"
+        return f"Pedido #{obj.id}"
 
-    id_display.short_description = 'Venda'
+    id_display.short_description = 'Pedido'
