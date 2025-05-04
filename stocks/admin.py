@@ -37,8 +37,10 @@ class StockAdmin(admin.ModelAdmin):
     actions = [export_as_excel]
 
     def low_stock_alert(self, obj):
-        if obj.quantity < 3:
+        if 3 > obj.quantity > 0:
             return "⚠️ Estoque Baixo!"
+        if obj.quantity == 0:
+            return '🛑 Sem Estoque!'
         return "OK"
 
     low_stock_alert.short_description = 'Status Estoque'
