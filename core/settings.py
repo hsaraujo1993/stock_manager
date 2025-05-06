@@ -21,19 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
+# Variaveis de ambiente para PRD
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
-# Carregar as variáveis de ambiente do arquivo .env
+# Variáveis de ambiente local que consta no arquivo .env
 # load_dotenv()
-#
-# # Variáveis de ambiente com fallbacks para ambiente local
+
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split()
 # DATABASE_URL = os.environ.get("DATABASE_URL")
 # DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
