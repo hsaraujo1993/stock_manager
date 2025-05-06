@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+# from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,24 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+
+
+# Carregar as variáveis de ambiente do arquivo .env
+# load_dotenv()
+#
+# # Variáveis de ambiente com fallbacks para ambiente local
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split()
+# DATABASE_URL = os.environ.get("DATABASE_URL")
+# DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+# SECRET_KEY = os.environ.get("SECRET_KEY", "chave-padrao-insegura")
+#
+# if not DATABASE_URL:
+#     raise ValueError("DATABASE_URL não definida no .env.")
+#
+# DATABASES = {
+#     'default': dj_database_url.parse(DATABASE_URL)
+# }
+
 
 # Application definition
 
