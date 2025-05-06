@@ -1,5 +1,7 @@
 # 📦 Stock Manager
 
+![Status](https://img.shields.io/badge/status-produção-brightgreen)
+
 Sistema de gerenciamento de estoque desenvolvido com Django.
 
 ## 🧾 Visão Geral
